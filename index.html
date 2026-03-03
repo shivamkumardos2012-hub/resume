@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Caption SaaS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>AI SaaS</h2>
+    <div class="nav-item active" onclick="showGenerate()">Generate</div>
+    <div class="nav-item" onclick="showHistory()">History</div>
+      <div class="nav-item" onclick="window.open('third.html', '_blank')">
+    Settings
+</div>
+        </div>
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- GENERATE PAGE -->
+    <div id="generatePage">
+
+      <div class="header">
+        <h1>Instagram Caption Generator</h1>
+      </div>
+
+      <div class="content">
+
+        <!-- Input Section -->
+        <div class="card input-card">
+          <input type="text" id="business" placeholder="Business Type">
+          <textarea id="offer" placeholder="Offer / Product"></textarea>
+          <select id="tone">
+            <option>Professional</option>
+            <option>Funny</option>
+            <option>Luxury</option>
+            <option>Sales</option>
+          </select>
+          <button onclick="generateCaptions()">Generate</button>
+        </div>
+
+        <!-- Result Section -->
+        <div class="card result-card">
+          <div id="loader" class="loader hidden"></div>
+          <div id="results"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- HISTORY PAGE -->
+    <div id="historyPage" class="hidden">
+      <div class="header">
+        <h1>Copied History</h1>
+        <button onclick="clearHistory()">Clear History</button>
+      </div>
+      <div id="historyContainer" class="history-grid"></div>
+    </div>
+
+  </div>
+
+</div>
+<div class="footer-section">
+    <a href="main.html">
+  <button class="premium-btn" onclick="footerAction()">
+    🚀 Upgrade to Pro
+  </button>
+  </a>
+</div>
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  color:white;
+  text-align:center;
+}
+
+h1{margin-top:30px;}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:40px;
+}
+
+button{
+  padding:20px;
+  border:none;
+  border-radius:15px;
+  background:linear-gradient(90deg,#ff512f,#dd2476);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔥 AI Creator SaaS Dashboard</h1>
+
+<div class="grid">
+
+<button onclick="go('trending.html')">Trending Hashtag Finder</button>
+<button onclick="go('bio.html')">Instagram Bio Generator</button>
+<button onclick="go('calendar.html')">Content Calendar Planner</button>
+<button onclick="go('engagement.html')">Engagement Prediction</button>
+<button onclick="go('competitor.html')">Competitor Caption Analyze</button>
+<button onclick="go('tone.html')">Caption Tone Slider</button>
+<button onclick="go('language.html')">Multi Language Support</button>
+
+</div>
+<div>
+    <a href="second.html">
+      <button class="pro-btn">ALL FUNCTION</button>
+      </a>
+      <a href="first.html">
+        <button class="pro-btn">reel script </button>
+      </a>
+</div>
+
+<script>
+function go(page){
+  window.location.href = page;
+}
+</script>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+}
+
+/* DASHBOARD LAYOUT */
+.dashboard{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:220px;
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  backdrop-filter:blur(15px);
+}
+
+.sidebar h2{
+  margin-bottom:30px;
+}
+
+.nav-item{
+  margin-bottom:15px;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active{
+  background:linear-gradient(90deg,#7c3aed,#06b6d4);
+}
+
+/* MAIN AREA */
+.main{
+  flex:1;
+  padding:30px;
+}
+
+.header{
+  margin-bottom:20px;
+}
+
+.content{
+  display:flex;
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.07);
+  backdrop-filter:blur(10px);
+  padding:20px;
+  border-radius:15px;
+  flex:1;
+  animation:fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* INPUTS */
+input, textarea, select{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:none;
+  border-radius:10px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+}
+
+textarea{
+  height:80px;
+  resize:none;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(90deg,#7c3aed,#06b6d4);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(124,58,237,0.4);
+}
+
+/* RESULTS */
+.result-item{
+  background:rgba(255,255,255,0.08);
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:10px;
+  position:relative;
+  transition:0.3s;
+}
+
+.result-item:hover{
+  transform:translateY(-3px);
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  margin-top:10px;
+  display:inline-block;
+  background:#06b6d4;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:13px;
+  transition:0.3s;
+}
+
+.copy-btn:hover{
+  background:#0ea5e9;
+}
+
+.copy-btn:hover{
+  background:#0ea5e9;
+}
+
+/* LOADER */
+.loader{
+  border:4px solid rgba(255,255,255,0.1);
+  border-top:4px solid #7c3aed;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  animation:spin 1s linear infinite;
+  margin:20px auto;
+}
+
+@keyframes spin{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
+
+.hidden{
+  display:none;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .dashboard{
+    flex-direction:column;
+  }
+  .sidebar{
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+  }
+  .content{
+    flex-direction:column;
+  }
+}
+.hidden{
+  display:none;
+}
+
+.history-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+  margin-top:20px;
+}
+
+.history-card{
+  background:rgba(255,255,255,0.07);
+  padding:15px;
+  border-radius:12px;
+  backdrop-filter:blur(8px);
+}
+
+.history-card p{
+  white-space:pre-line;
+}
+class{
+  width: 39px;
+
+}
+/* Footer Section */
+.footer-section{
+  text-align:center;
+  padding:40px 20px;
+  margin-top:40px;
+}
+
+/* Premium Button */
+.premium-btn{
+  padding:14px 35px;
+  font-size:16px;
+  font-weight:600;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#7c3aed,#06b6d4);
+  color:white;
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Glow Effect */
+.premium-btn:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 15px 35px rgba(124,58,237,0.5);
+}
+
+/* Shine Animation */
+.premium-btn::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.3),transparent);
+  transition:0.6s;
+}
+
+.premium-btn:hover::before{
+  left:100%;
+}
+.pro-btn{
+  width:220px;          /* Button Width */
+  height:60px;          /* Button Height */
+  font-size:18px;
+  font-weight:600;
+  color:white;
+  background:transparent;
+  border-radius:40px;   /* Border Radius */
+  border:2px solid transparent;
+  cursor:pointer;
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+  transition:0.4s ease;
+}
+
+/* Animated Gradient Border */
+.pro-btn::before{
+  content:"";
+  position:absolute;
+  top:-2px;
+  left:-2px;
+  right:-2px;
+  bottom:-2px;
+  background:linear-gradient(90deg,#ff512f,#dd2476,#00c6ff,#ff512f);
+  background-size:300%;
+  border-radius:40px;
+  z-index:-1;
+  animation:animateBorder 6s linear infinite;
+}
+
+/* Inner Background */
+.pro-btn::after{
+  content:"";
+  position:absolute;
+  inset:3px;
+  background:#0f0c29;
+  border-radius:40px;
+  z-index:-1;
+}
+
+/* Hover Effect */
+.pro-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px #ff4d6d;
+}
+
+/* Border Animation */
+@keyframes animateBorder{
+  0%{background-position:0%;}
+  100%{background-position:300%;}
+}

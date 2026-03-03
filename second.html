@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Creator PRO SaaS</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  color:white;
+}
+
+.dashboard{
+  display:flex;
+  min-height:100vh;
+}
+
+/* Sidebar */
+.sidebar{
+  width:260px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  padding:20px;
+}
+
+.sidebar h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.nav{
+  padding:12px;
+  margin:8px 0;
+  background:rgba(255,255,255,0.05);
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.nav:hover{
+  background:linear-gradient(90deg,#ff512f,#dd2476);
+}
+
+/* Main */
+.main{
+  flex:1;
+  padding:20px;
+}
+
+.section{
+  display:none;
+  animation:fade 0.5s ease;
+}
+
+.active{
+  display:block;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:20px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:8px;
+  background:#1a1a2e;
+  color:white;
+}
+
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(90deg,#ff512f,#dd2476);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+.result{
+  margin-top:15px;
+  padding:15px;
+  background:#1a1a2e;
+  border-radius:10px;
+  white-space:pre-wrap;
+}
+
+.loader{
+  border:4px solid #1a1a2e;
+  border-top:4px solid #ff512f;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  animation:spin 1s linear infinite;
+  margin:auto;
+  display:none;
+}
+
+@keyframes spin{
+  100%{transform:rotate(360deg);}
+}
+
+@keyframes fade{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@media(max-width:768px){
+  .dashboard{flex-direction:column;}
+  .sidebar{width:100%;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<div class="sidebar">
+<h2>AI Creator PRO 💎</h2>
+<div class="nav" onclick="show('hashtag')">Trending Hashtags</div>
+<div class="nav" onclick="show('bio')">Bio Generator</div>
+<div class="nav" onclick="show('calendar')">Content Calendar</div>
+<div class="nav" onclick="show('engagement')">Engagement Score</div>
+<div class="nav" onclick="show('competitor')">Competitor Analyze</div>
+<div class="nav" onclick="show('tone')">Tone Slider</div>
+<div class="nav" onclick="show('language')">Multi Language</div>
+<div class="nav" onclick="show('history')">History</div>
+</div>
+
+<div class="main">
+
+<!-- Hashtag -->
+<div id="hashtag" class="section active">
+<div class="card">
+<h2>🔥 Trending Hashtag Finder</h2>
+<input id="niche" placeholder="Enter Niche">
+<button onclick="genHashtag()">Generate</button>
+<div class="result" id="hashtagRes"></div>
+</div>
+</div>
+
+<!-- Bio -->
+<div id="bio" class="section">
+<div class="card">
+<h2>✨ Instagram Bio Generator</h2>
+<input id="bioInput" placeholder="Enter Niche">
+<button onclick="genBio()">Generate</button>
+<div class="result" id="bioRes"></div>
+</div>
+</div>
+
+<!-- Calendar -->
+<div id="calendar" class="section">
+<div class="card">
+<h2>📅 Content Calendar Planner</h2>
+<button onclick="genCalendar()">Generate Weekly Plan</button>
+<div class="result" id="calRes"></div>
+</div>
+</div>
+
+<!-- Engagement -->
+<div id="engagement" class="section">
+<div class="card">
+<h2>📊 Engagement Prediction</h2>
+<textarea id="engCap" placeholder="Paste Caption"></textarea>
+<button onclick="predict()">Predict</button>
+<div class="result" id="engRes"></div>
+</div>
+</div>
+
+<!-- Competitor -->
+<div id="competitor" class="section">
+<div class="card">
+<h2>🔍 Competitor Caption Analyzer</h2>
+<textarea id="compCap" placeholder="Paste Competitor Caption"></textarea>
+<button onclick="analyze()">Analyze</button>
+<div class="result" id="compRes"></div>
+</div>
+</div>
+
+<!-- Tone -->
+<div id="tone" class="section">
+<div class="card">
+<h2>🎚 Caption Tone Slider</h2>
+<input type="range" min="1" max="3" id="toneSlider">
+<button onclick="genTone()">Generate</button>
+<div class="result" id="toneRes"></div>
+</div>
+</div>
+
+<!-- Language -->
+<div id="language" class="section">
+<div class="card">
+<h2>🌍 Multi Language Caption</h2>
+<select id="lang">
+<option>English</option>
+<option>Hindi</option>
+<option>Spanish</option>
+</select>
+<button onclick="genLang()">Generate</button>
+<div class="result" id="langRes"></div>
+</div>
+</div>
+
+<!-- History -->
+<div id="history" class="section">
+<div class="card">
+<h2>📜 History</h2>
+<div class="result" id="historyRes"></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function show(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+if(id==="history") loadHistory();
+}
+
+function saveHistory(text){
+let h=JSON.parse(localStorage.getItem("history"))||[];
+h.push(text);
+localStorage.setItem("history",JSON.stringify(h));
+}
+
+function loadHistory(){
+let h=JSON.parse(localStorage.getItem("history"))||[];
+document.getElementById("historyRes").innerText=h.join("\n\n-----------------\n\n");
+}
+
+/* Hashtag */
+function genHashtag(){
+let niche=document.getElementById("niche").value||"Business";
+let tags=`#${niche} #TrendingNow #ExplorePage #ViralReel #InstaGrowth`;
+document.getElementById("hashtagRes").innerText=tags;
+saveHistory(tags);
+}
+
+/* Bio */
+function genBio(){
+let niche=document.getElementById("bioInput").value||"Digital Creator";
+let bio=`🔥 ${niche} Expert\n🚀 Helping You Grow\n📩 DM For Collab`;
+document.getElementById("bioRes").innerText=bio;
+saveHistory(bio);
+}
+
+/* Calendar */
+function genCalendar(){
+let plan=`Mon - Educational\nTue - Reel\nWed - Carousel\nThu - BTS\nFri - Trend Reel\nSat - Story\nSun - Live`;
+document.getElementById("calRes").innerText=plan;
+saveHistory(plan);
+}
+
+/* Engagement */
+function predict(){
+let text=document.getElementById("engCap").value;
+let score=Math.min(100,Math.floor(text.length/2)+50);
+let res="🔥 Engagement Score: "+score+"/100";
+document.getElementById("engRes").innerText=res;
+saveHistory(res);
+}
+
+/* Competitor */
+function analyze(){
+let feedback="Strong Hook ✅\nAdd More CTA ⚡\nIncrease Hashtags 🔥";
+document.getElementById("compRes").innerText=feedback;
+saveHistory(feedback);
+}
+
+/* Tone */
+function genTone(){
+let val=document.getElementById("toneSlider").value;
+let tones=["Professional","Funny","Luxury"];
+let text=tones[val-1]+" Tone Caption Generated";
+document.getElementById("toneRes").innerText=text;
+saveHistory(text);
+}
+
+/* Language */
+function genLang(){
+let l=document.getElementById("lang").value;
+let cap={
+English:"Success comes from consistency 🚀",
+Hindi:"सफलता निरंतरता से आती है 🚀",
+Spanish:"El éxito viene de la consistencia 🚀"
+};
+document.getElementById("langRes").innerText=cap[l];
+saveHistory(cap[l]);
+}
+</script>
+
+</body>
+</html>
